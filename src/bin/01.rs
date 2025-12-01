@@ -2,25 +2,16 @@
 advent_of_code::solution!(1);
 
 pub fn part_one(input: &str) -> Option<u64> {
-    let mut start = 50;
+    let mut cur = 50;
     let mut sum: u64 = 0;
 
     for c in input.lines()  {
-      let rot = c.chars().nth(0).unwrap();
-      let val: i32 = c.split(rot).nth(1).unwrap().parse().unwrap();
+      let (rot, uncast) = c.split_at(1);
+      let val: i32 = uncast.parse().unwrap();
 
-      match rot
-      {
-        'L' => {
-            start -= val;
-        }
-        'R' => {
-            start += val;
-        }
-        _ => {}
-      }
+      cur += if rot == "L" { -val } else { val };
 
-      if start % 100 == 0
+      if cur % 100 == 0
       {
         sum += 1;
       }
@@ -30,40 +21,39 @@ pub fn part_one(input: &str) -> Option<u64> {
 }
 
 pub fn part_two(input: &str) -> Option<u64> {
-    let mut start = 50;
+    let mut cur: i32 = 50;
     let mut sum: u64 = 0;
 
     for c in input.lines()  {
-      let rot = c.chars().nth(0).unwrap();
-      let val: i32 = c.split(rot).nth(1).unwrap().parse().unwrap();
-
+      let (rot, uncast) = c.split_at(1);
+      let val: i32 = uncast.parse().unwrap();
       match rot
       {
-        'L' => {
+        "L" => {
             for _i in 0..val
             {
-                start -= 1;
-                if start == 0
+                cur -= 1;
+                if cur == 0
                 {
                     sum += 1;
                 }
-                if start < 0
+                if cur < 0
                 {
-                    start = 99;
+                    cur = 99;
                 }
             }
         }
-        'R' => {
+        "R" => {
             for _i in 0..val
             {
-                start += 1;
-                if start == 0
+                cur += 1;
+                if cur == 0
                 {
                     sum += 1;
                 }
-                if start > 99
+                if cur > 99
                 {
-                    start = 0;
+                    cur = 0;
                     sum += 1;
                 }
             }
