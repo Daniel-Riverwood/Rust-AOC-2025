@@ -49,39 +49,6 @@ pub fn part_two(input: &str) -> Option<u64> {
         }
       }
       cur = new;
-    //   match rot
-    //   {
-    //     "L" => {
-    //         for _i in 0..val
-    //         {
-    //             cur -= 1;
-    //             if cur == 0
-    //             {
-    //                 sum += 1;
-    //             }
-    //             if cur < 0
-    //             {
-    //                 cur = 99;
-    //             }
-    //         }
-    //     }
-    //     "R" => {
-    //         for _i in 0..val
-    //         {
-    //             cur += 1;
-    //             if cur == 0
-    //             {
-    //                 sum += 1;
-    //             }
-    //             if cur > 99
-    //             {
-    //                 cur = 0;
-    //                 sum += 1;
-    //             }
-    //         }
-    //     }
-    //     _ => {}
-    //   }
     }
 
     Some(sum)
